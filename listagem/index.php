@@ -1,6 +1,7 @@
 <?php
 
 include('../componentes/header.php');
+
 require("../login/processa_login.php");
 verificaLogin();
 
@@ -40,20 +41,32 @@ $resultado = mysqli_query($conexao, $sql);
                     <th><?= $pessoa["email"] ?></th>
                     <th><?= $pessoa["celular"] ?></th>
                     <th>
-                        <button>
-                            <a href="../cadastro/editar.php?cod_pessoa=<?php echo $pessoa["cod_pessoa"] ?>&acao=editar">EDITAR</a>
-                        </button>
-                        <button class="btn">
-                            <a href="../cadastro/acoes.php?cod_pessoa=<?php echo $pessoa["cod_pessoa"] ?>&acao=deletar">EXCLUIR</a>
-                        </button>
+                        <button class="btn btn-warning" onclick="javascript:window.location.href = '../cadastro/editar.php?cod_pessoa=<?= $pessoa['cod_pessoa'] ?>'">Editar</button>
+                        <button class="btn btn-danger" onclick="deletar(<?= $pessoa['cod_pessoa'] ?>)" >Excluir</button>
+                        
+                        
                     </th>
                 </tr>
-
-            <?php
+                
+                <?php
             }
             ?>
+            <form id="form-deletar" action="../cadastro/acoes.php" method="post" style="display: inline;">
+                <input type="hidden" name="cod_pessoa" id="cod_pessoa">
+                <input type="hidden" name="acao" value="deletar" />
+            </form>
+        </tbody>
 
     </table>
+
+    <script lang="javascript">
+        function deletar(idPessoa) {
+            if (confirm("Tem certeza que deseja excluir?")) {
+                document.querySelector("#cod_pessoa").value = idPessoa;
+                document.querySelector("#form-deletar").submit();
+            }
+        }
+    </script>
 
 </div>
 

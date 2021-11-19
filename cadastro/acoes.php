@@ -10,12 +10,10 @@ switch ($_POST["acao"]) {
         $email = $_POST["email"];
         $celular = $_POST["celular"];
 
-
         $sql = "INSERT INTO tbl_pessoa (nome, sobrenome, email, celular) 
             VALUES ('$nome', '$sobrenome', '$email', '$celular')";
 
-
-        $resultado - mysqli_query($conexao, $sql);
+        $resultado = mysqli_query($conexao, $sql);
 
         header('location: index.php');
 
@@ -23,9 +21,9 @@ switch ($_POST["acao"]) {
 
     case 'deletar':
 
-        $cod_pessoa = $_GET["cod_pessoa"];
+        $idPessoa = $_POST["cod_pessoa"];
 
-        $sql = "DELETE FROM tbl_pessoa WHERE cod_pessoa = $cod_pessoa";
+        $sql = "DELETE FROM tbl_pessoa WHERE cod_pessoa = $idPessoa";
         $resultado = mysqli_query($conexao, $sql);
 
         header("location: ../listagem/index.php");
@@ -34,7 +32,7 @@ switch ($_POST["acao"]) {
 
     case 'editar':
 
-        $cod_pessoa = $_GET["cod_pessoa"];
+        $idPessoa = $_POST["idPessoa"];
 
         $nome = $_POST["nome"];
         $sobrenome = $_POST["sobrenome"];
@@ -43,7 +41,7 @@ switch ($_POST["acao"]) {
 
         $sql = "UPDATE tbl_pessoa SET nome = '$nome', 
             sobrenome = '$sobrenome', email = '$email', celular = '$celular'
-            WHERE cod_pessoa = $cod_pessoa";
+            WHERE cod_pessoa = $idPessoa";
 
         $resultado = mysqli_query($conexao, $sql);
 

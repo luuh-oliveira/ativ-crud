@@ -54,7 +54,7 @@ session_start();
         }
         ?>
 
-        <form id="form-logout" style="display:none" method="POST" action="../login/acoesLogin.php">
+        <form id="form-logout" style="display:none" method="POST" action="../login/acoes_login.php">
             <input type="hidden" name="acao" value="logout" />
         </form>
 

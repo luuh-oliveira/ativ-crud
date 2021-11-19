@@ -1,6 +1,7 @@
 <?php
 
 include('../componentes/header.php');
+
 require("../login/processa_login.php");
 verificaLogin();
 
@@ -22,7 +23,7 @@ $pessoa = mysqli_fetch_array($resultado);
         <div class="card-body">
             <form method="post" action="./acoes.php">
             
-                <input type="hidden" name="pessoaId" value="<?= $idPessoa ?>">
+                <input type="hidden" name="idPessoa" value="<?= $idPessoa ?>">
                 <input type="hidden" name="acao" value="editar" />
 
                 <input class="form-control" type="text" placeholder="Digite o nome" name="nome" id="nome" value="<?= $pessoa['nome'] ?>">
